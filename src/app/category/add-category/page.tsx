@@ -4,12 +4,9 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 //import { storage } from '@/utils/Firebase'
-//import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-
-
-
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { ToastContainer, toast } from 'react-toastify';
-import  TailSpin  from 'react-loader-spinner';
+//import { TailSpin } from 'react-loader-spinner';
 import { useRouter } from 'next/navigation';
 import { add_new_category } from '@/Services/Admin/category';
 import Cookies from 'js-cookie';
@@ -34,6 +31,37 @@ interface loaderType {
 
 
 
+const uploadImages = async (file: File) => {
+
+    /*
+    const createFileName = () => {
+        const timestamp = Date.now();
+        const randomString = Math.random().toString(36).substring(2, 8);
+        return `${file?.name}-${timestamp}-${randomString}`;
+    }
+
+    const fileName = createFileName();
+    const storageRef = ref(storage, `public/category/${fileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    return new Promise((resolve, reject) => {
+        uploadTask.on('state_changed', (snapshot) => {
+        }, (error) => {
+            console.log(error)
+            reject(error);
+        }, () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                resolve(downloadURL);
+            }).catch((error) => {
+                console.log(error)
+                reject(error);
+            });
+        });
+    });
+
+*/
+
+}
 
 
 
@@ -93,7 +121,8 @@ export default function AddCategory() {
 	//const uploadImageToFirebase = await uploadImages(data.image[0]);
 		
 	const uploadImageToFirebase ='abc.jpg'
-       
+        alert('----');
+		console.log('====================');	
         const finalData = { categoryName: data.name, categoryDescription: data.description, categoryImage: uploadImageToFirebase, categorySlug: data.slug }
 
         const res = await add_new_category(finalData)
@@ -136,15 +165,7 @@ export default function AddCategory() {
             {
                 loader ? (
                     <div className='w-full  flex-col h-96 flex items-center justify-center '>
-                        <TailSpin
-                            height="50"
-                            width="50"
-                            color="orange"
-                            
-                            radius={1}
-                           
-                            visible={true}
-                        />
+                       
                         <p className='text-sm mt-2 font-semibold text-orange-500'>Adding Category Hold Tight ....</p>
                     </div>
                 ) : (

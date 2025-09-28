@@ -12,7 +12,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { setCategoryData, setCatLoading, setProdLoading, setProductData } from '@/utils/AdminSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import Loading from './loading'
+//import Loading from './loading'
 import { setUserData } from '@/utils/UserDataSlice'
 import { RootState } from '@/Store/store'
 
@@ -69,16 +69,10 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      
       <Hero setRatio={setRatio} />
       {
-        loading ? <Loading /> :
-          <>
-
-		  {/*<TopCategories />
-		  <FeaturedProduct  />*/}
-            <Footer />
-
-          </>
+        
       }
       <ToastContainer />
     </>

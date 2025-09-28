@@ -15,7 +15,7 @@ export default function OpportunityDetailPage(req:any, res: any) {
   
   const id = req.params.id as string | undefined;
 
-interface Opportunity {
+interface Opportunity11 {
   title: string;
   description:  string;
   budgetrange:  number;
@@ -30,15 +30,16 @@ interface Opportunity {
   user_id:  string;
 }
 
-
-   const [rows, setRows] = useState<Opportunity[]>([]);
+   //const [rows, setRows] = useState<Opportunity11[]>([]);
+   const [rows, setRows] = useState<Opportunity11 | null>(null);
   
    useEffect(() => {
     axios.get("/api/opportunity/"+id).then((res) => setRows(res.data));
   }, []);
   
   
-  //alert(rows.title);
+ 
+ 
   const [opportunity] = useState({
     title: "Opportunity details",
     budgetBracket: "$2k – $5k",
@@ -66,14 +67,14 @@ interface Opportunity {
       {/* --- Summary --- */}
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle>{rows[0]?.title}</CardTitle>
+          <CardTitle>{rows?.title}</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-2 sm:grid-cols-2">
           <div>
-            <strong>Budget:</strong> {rows[0]?.budgetrange}
+            <strong>Budget:</strong> {rows?.budgetrange}
           </div>
           <div>
-            <strong>Deadline Apply:</strong> {new Date(rows[0]?.deadlinetoapply).toLocaleDateString("en-IN")}
+            <strong>Deadline Apply:</strong> {rows?.deadlinetoapply}
 			
 			
           </div>
@@ -100,7 +101,7 @@ interface Opportunity {
             <CardHeader>
               <CardTitle>Description</CardTitle>
             </CardHeader>
-            <CardContent>{rows[0]?.description}</CardContent>
+            <CardContent>{rows?.description}</CardContent>
           </Card>
         </TabsContent>
 

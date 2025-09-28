@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 //import { storage } from '@/utils/Firebase'
 //import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { ToastContainer, toast } from 'react-toastify';
-import  TailSpin  from 'react-loader-spinner';
+///import { TailSpin } from 'react-loader-spinner';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
@@ -39,8 +39,11 @@ interface loaderType {
 
 
 
-/*
+
 const uploadImages = async (file: File) => {
+
+/*
+
     const createFileName = () => {
         const timestamp = Date.now();
         const randomString = Math.random().toString(36).substring(2, 8);
@@ -65,9 +68,10 @@ const uploadImages = async (file: File) => {
             });
         });
     });
+*/
 }
 
-*/
+
 
 const maxSize = (value: File) => {
     const fileSize = value.size / 1024 / 1024;
@@ -176,15 +180,7 @@ export default function AddProduct() {
             {
                 loader ? (
                     <div className='w-full  flex-col h-96 flex items-center justify-center '>
-                        <TailSpin
-                            height="50"
-                            width="50"
-                            color="orange"
-                          
-                            radius={1}
                         
-                            visible={true}
-                        />
                         <p className='text-sm mt-2 font-semibold text-orange-500'>Adding Product Hold Tight ....</p>
                     </div>
                 ) : (
